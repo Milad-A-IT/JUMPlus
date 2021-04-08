@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+ </head>
+<body>
+<h1>PLEASE ENTER PARKING INFORMATION</h1>
+<div id="entries">
+</div>
+<form>
+    <label for = "lot">lot</label><br>
+    <textarea id="lot"></textarea><br>
+    <label for = "spots">spots</label><br>
+    <textarea id="spots"></textarea><br>
+<button id='submit'>submit</button>
+</form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+
+<script type="text/javascript">
+
+var API_URL = 'https://cd758a1iyk.execute-api.us-east-1.amazonaws.com/prod/entries';
+//$(document).ready(function(){
+$('#submit').on('click', function(){
+ $.ajax({
+type: 'POST',
+url: API_URL,
+    data: JSON.stringify({"lot": $('#lot').val(),"spots": $('#spots').val()}),
+     
+     contentType: "application/json",
+success: function(data){
+    location.reload();
+   
+}
+     });
+    return false;
+});
+</script>
+</body>
+
+</html>
